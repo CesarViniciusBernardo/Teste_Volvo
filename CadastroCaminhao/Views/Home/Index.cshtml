@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CadastroCaminhao.Models.Caminhao>
+
+@{
+    Layout = "_Layout";
+    var title = "Caminhao - Cadastro";
+    ViewData["Title"] = title;
+}
+
+<h2>@title</h2>
+
+<h3><a asp-action="Create" class="btn btn-sm btn-secondary">Adicionar</a></h3>
+<table class="table table-bordered table-sm table-striped">
+    <thead>
+        <tr><th>Id</th><th>Modelo</th><th>AnoModelo</th><th>AnoFabricacao</th><th>Atualizar</th><th>Deletar</th></tr>
+    </thead>
+    <tbody>
+        @if (Model == null)
+        {
+            <tr><td colspan="7" class="text-center">No Model Data</td></tr>
+
+        }
+        else
+        {
+            @foreach (var registro in Model)
+            {
+                <tr>
+                    <td>@registro.Id</td>
+                    <td>@registro.Modelo</td>
+                    <td>@registro.AnoModelo</td>
+                    <td>@registro.AnoFabricacao</td>
+                    <td><a asp-action="Update" asp-route-id="@registro.Id">Atualizar</a></td>
+                    <td>
+                        <form asp-action="Delete" method="post" asp-route-id="@registro.Id">
+                            <button>Deletar</button>
+                        </form>
+                    </td>
+                </tr>
+
+            }
+        }
+    </tbody>
+</table>
