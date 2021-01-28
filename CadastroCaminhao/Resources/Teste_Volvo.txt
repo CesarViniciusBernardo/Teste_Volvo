@@ -22,7 +22,7 @@ Requisitos Técnicos:
 * Usar Migrations para criação da base de dados - OK (usei abordagem Code First)
 	add-migration CadastroCaminhaoDB
 	dotnet ef database update
-* A criação da base de dados deverá ser automática - OK (Adicionei instrução para verificar se o banco de dados existe, caso não, o migrations é executado para criar a base)
+* A criação da base de dados deverá ser automática - OK (Adicionei instrução para executar o migrations criar a base no arquivo Startup.cd)
 * Criar testes unitários - OK (criei alguns testes usando um projeto MSTest - testei os métodos que validam as regras de negócio)
 
 Importante
