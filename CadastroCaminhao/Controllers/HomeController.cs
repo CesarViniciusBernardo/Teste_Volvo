@@ -30,7 +30,8 @@ namespace CadastroCaminhao.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (CaminhaoNegocio.ValidarCaminhao(caminhao))
+                var caminhaoNegocio = new CaminhaoNegocio();
+                if (caminhaoNegocio.ValidarModeloCaminhao(caminhao))
                 {
                     cadastroCaminhaoContext.Caminhao.Add(caminhao);
                     cadastroCaminhaoContext.SaveChanges();

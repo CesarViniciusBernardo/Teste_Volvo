@@ -7,12 +7,24 @@ using CadastroCaminhao.Models;
 
 namespace CadastroCaminhao.Negocio
 {
-    public static class CaminhaoNegocio
+    public class CaminhaoNegocio
     {
-        public static bool ValidarCaminhao(Caminhao caminhao)
+        public bool ValidarModeloCaminhao(Caminhao caminhao)
         {
-            //Adicionar regras de negocio.
-            return true;
+            if (caminhao.Modelo.Equals("FM"))
+                return true;
+            if (caminhao.Modelo.Equals("FH"))
+                return true;
+            return false;
+        }
+
+        public bool ValidarAnoModelo(Caminhao caminhao)
+        {
+            if (caminhao.AnoModelo == caminhao.AnoFabricacao)
+                return true;
+            if (caminhao.AnoModelo == (caminhao.AnoFabricacao + 1))
+                return true;
+            return false;
         }
     }
 }
