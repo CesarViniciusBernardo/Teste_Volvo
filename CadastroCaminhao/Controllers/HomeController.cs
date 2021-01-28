@@ -20,8 +20,9 @@ namespace CadastroCaminhao.Controllers
             return View(cadastroCaminhaoContext.Caminhao);
         }
 
-        public IActionResult Create()
+        public IActionResult Create(bool IsSuccess = false)
         {
+            ViewBag.IsSuccess = IsSuccess;
             return View();
         }
 
@@ -33,15 +34,18 @@ namespace CadastroCaminhao.Controllers
                 var caminhaoNegocio = new CaminhaoNegocio();
                 if (caminhaoNegocio.ValidarModeloCaminhao(caminhao))
                 {
-                    cadastroCaminhaoContext.Caminhao.Add(caminhao);
-                    cadastroCaminhaoContext.SaveChanges();
-                    return RedirectToAction("Index");
+                    if (caminhaoNegocio.ValidarAnoModelo(caminhao))
+                    {
+                        cadastroCaminhaoContext.Caminhao.Add(caminhao);
+                        cadastroCaminhaoContext.SaveChanges();
+                        return RedirectToAction("Create", new { IsSuccess = true });
+                    }
+                    return RedirectToAction("Create", new { IsSuccess = false });
                 }
                 else
-                    return View();
+                    return RedirectToAction("Create", new { IsSuccess = false });
             }
-            else
-                return View();
+            return RedirectToAction("Create", new { IsSuccess = false });
         }
 
         public IActionResult Update(int id)
@@ -53,10 +57,24 @@ namespace CadastroCaminhao.Controllers
         [ActionName("Update")]
         public IActionResult Update_Post(Caminhao caminhao)
         {
-            cadastroCaminhaoContext.Caminhao.Update(caminhao);
-            cadastroCaminhaoContext.SaveChanges();
-            return RedirectToAction("Index");
-        }
+            if (ModelState.IsValid)
+            {
+                var caminhaoNegocio = new CaminhaoNegocio();
+                if (caminhaoNegocio.ValidarModeloCaminhao(caminhao))
+                {
+                    if (caminhaoNegocio.ValidarAnoModelo(caminhao))
+                    {
+                        cadastroCaminhaoContext.Caminhao.Update(caminhao);
+                        cadastroCaminhaoContext.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    return View();
+                }
+                else
+                    return View();
+            }
+            return View();
+    }
 
         [HttpPost]
         public IActionResult Delete(int id)
