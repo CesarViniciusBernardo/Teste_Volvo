@@ -1,0 +1,46 @@
+Teste Volvo - Prova DEV
+Candidato: Cesar Vinicius Bernardo
+Data: 28/01/2021
+
+**Cadastro de Caminhoes
+Requisitos Principais:
+
+* Visualizar caminhoes cadastrados; Propriedades mínimas: Modelo, Ano de Fabricação, Ano Modelo - OK
+* Atualizar as informações de um caminhão - OK
+* Excluir um caminhão - OK
+* Inserir um novo caminhão - OK
+
+Requisitos Secundários:
+
+* Validar modelos permitidos (FH e FM) - OK
+
+Requisitos Técnicos:
+
+* Utilizar ASP.NET Core - OK (algumas validações e mensagens na tela não ficaram perfeitas)
+* Utilizar base de dados local - OK (usei SQL Server Express)
+* Utilizar ORM para mapear as tabelas de base de dados - OK (usei Entity Framework)
+* Usar Migrations para criação da base de dados - OK (usei abordagem Code First)
+	add-migration CadastroCaminhaoDB
+	dotnet ef database update
+* A criação da base de dados deverá ser automática - OK (Adicionei instrução para verificar se o banco de dados existe, caso não, o migrations é executado para criar a base)
+* Criar testes unitários - OK (criei alguns testes usando um projeto MSTest - testei os métodos que validam as regras de negócio)
+
+Importante
+
+* O código fonte deverá ser disponibilizado no GitHub como um repositório público do próprio candidato.
+	Link para o repositório no GitHub: https://github.com/CesarViniciusBernardo/Teste_Volvo
+	
+* O código deverá conter todas as instruções para que o mesmo possa ser executado.
+	Adicionei alguns comentários nos códigos. Ao abrir a solution no visual studio, certifique-se de que o projeto CadastroCaminhao esta definido como projeto de inicialização;
+	A connection string esta no arquivo appsettings.json: "Server=.\\SQLEXPRESS;Database=CadastroCaminhao;Trusted_Connection=True;MultipleActiveResultSets=true";
+	Usei o SQLServer Express, utilizando autenticação do próprio Windows. Se necessário, só alterar a connection string apontanto para sua instancia do SQL Server;
+	
+*A prova será desqualificada caso os respectivos testes não possam ser executados por falta de documentação.
+	O projeto MSTest possui só uma classe, e nela contém os métodos criados para testar as regras de negócio.
+	Os métodos precisam ter a propriedade [TestMethod] para que o Framework detecte automaticamente, e atualize a lista de testes;
+	Ao abrir o Gerenciador de Testes (menu Exibir > Gerenciador de Testes) é possível iniciar os testes, clicando no botão Executar;
+	
+Obs:
+Dificuldades encontradas:
+* Desenvolver um projeto web - quando eu programava, trabalhei muito com serviços do windows, forms e rest API; Trabalhar com interface de usuário é algo que tenho dificuldade;
+* Criar os testes unitários - tenho conhecimento do que são, para que servem, já acompanhei equipe de dev trabalhando com essa abordagem, mas confesso que foi a primeira vez que criei um projeto de teste unitário.
