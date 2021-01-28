@@ -9,6 +9,7 @@ namespace CadastroCaminhao.Models
 {
     public class Caminhao
     {
+        //Classe modelo para o objeto Caminhao.
         [Required]
         public int Id { get; set; }
 

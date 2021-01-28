@@ -7,6 +7,10 @@ namespace CadastroCaminhaoUnitTestProject
     [TestClass]
     public class CaminhaoNegocioTests
     {
+        //Testes unitários dos métodos utilizados para validar as regras de negócio.
+        //Regra para validar o modelo do caminhao
+        //Regra para validar o anoModelo do caminhao
+
         [TestMethod]
         public void ValidarModeloCaminhao_FM_ReturnsTrue()
         {

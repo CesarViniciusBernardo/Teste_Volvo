@@ -10,7 +10,8 @@ namespace CadastroCaminhao.Controllers
 {
     public class HomeController : Controller
     {
-        private CadastroCaminhaoContext cadastroCaminhaoContext;
+        //contexto do banco de dados, tabela de caminhão - usando EF
+        readonly CadastroCaminhaoContext cadastroCaminhaoContext;
         public HomeController(CadastroCaminhaoContext cc)
         {
             cadastroCaminhaoContext = cc;
@@ -29,8 +30,10 @@ namespace CadastroCaminhao.Controllers
         [HttpPost]
         public IActionResult Create(Caminhao caminhao)
         {
+            //Valida se o objeto enviado é tipo caminhao
             if (ModelState.IsValid)
             {
+                //Validação de regras de negócio antes de salvar o novo registro no banco de dados.
                 var caminhaoNegocio = new CaminhaoNegocio();
                 if (caminhaoNegocio.ValidarModeloCaminhao(caminhao))
                 {
@@ -57,8 +60,10 @@ namespace CadastroCaminhao.Controllers
         [ActionName("Update")]
         public IActionResult Update_Post(Caminhao caminhao)
         {
+            //Valida se o objeto enviado é tipo caminhao
             if (ModelState.IsValid)
             {
+                //Validação de regras de negócio antes de atualizar o novo registro no banco de dados.
                 var caminhaoNegocio = new CaminhaoNegocio();
                 if (caminhaoNegocio.ValidarModeloCaminhao(caminhao))
                 {

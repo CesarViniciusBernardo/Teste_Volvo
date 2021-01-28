@@ -9,6 +9,7 @@ namespace CadastroCaminhao.Models
 {
     public class CadastroCaminhaoContext : DbContext
     {
+        //Classe de contexto do banco, para fazer conexão e criar a tabela Caminhao caso não exista (usando o Migrations)
         public CadastroCaminhaoContext(DbContextOptions<CadastroCaminhaoContext> options) : base(options) { }
         public DbSet<Caminhao> Caminhao { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
