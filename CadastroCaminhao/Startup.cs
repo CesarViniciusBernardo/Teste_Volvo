@@ -30,9 +30,9 @@ namespace CadastroCaminhao
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
                 var context = serviceScope.ServiceProvider.GetRequiredService<CadastroCaminhaoContext>();
-                context.Database.Migrate();
+                context.Database.EnsureCreated();
             }
-            System.Threading.Thread.Sleep(5000);
+            System.Threading.Thread.Sleep(7000);
 
             app.UseStaticFiles();
             app.UseDeveloperExceptionPage();
